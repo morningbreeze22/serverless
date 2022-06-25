@@ -1,7 +1,7 @@
 # [Replace this with your project title]
 
 ## About Me
-Hi! My name is Jim and is a MSCS student at University of Southern California! 
+Hi! My name is Jim and is an MSCS student at University of Southern California! 
 ## The Premise
 
 ## Tools used
