@@ -6,7 +6,7 @@ module.exports = async function (context, req) {
     const plaintext = (req.query.plaintext || (req.body && req.body.plaintext));
     const responseMessage = plaintext
         ? morse.textToMorse(plaintext)
-        : "Please enter some text to  convert!";
+        : "Please enter some text to convert!";
 
     context.res = {
         // status: 200, /* Defaults to 200 */
