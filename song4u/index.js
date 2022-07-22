@@ -41,7 +41,20 @@ module.exports = async function (context, req) {
 
 async function analyzeImage(img){
     const subscriptionKey = process.env.SUBSCRIPTIONKEY;
-    const uriBase = process.env.ENDPOINT + 'face/v1.0/detect';git 
+    const uriBase = process.env.ENDPOINT + 'face/v1.0/detect';
+
+    let params = new URLSearchParams({
+        'returnFaceId': 'true',
+        'returnFaceAttributes': 'age'    
+    })
+
+    let resp = await fetch(uriBase + '?' + params.toString(), {
+        method: 'POST',  //WHAT TYPE OF REQUEST?
+        body: img,  //WHAT ARE WE SENDING TO THE API?
+      
+      	//ADD YOUR TWO HEADERS HERE
+        headers: {
+            'Content-Type': 'application/octet-stream',
             'Ocp-Apim-Subscription-Key': subscriptionKey
         }
     })
