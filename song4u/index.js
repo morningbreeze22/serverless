@@ -17,7 +17,7 @@ module.exports = async function (context, req) {
 
     let id = "Unknown";
     if(age>5 && age<25){
-        id = "Genz";
+        id = "GenZ";
     }
     else if(age>24 && age<41){
         id = "GenY";
@@ -26,17 +26,14 @@ module.exports = async function (context, req) {
         id = "GenX";
     }
     else if(age>56 && age<76){
-        id = "BabyBommers";
+        id = "BabyBoomers";
     }
-
-    
 
     context.res = {
         // status: 200, /* Defaults to 200 */
         body: id,
     };
-    context.log(id);
-    context.done();
+
 }
 
 async function analyzeImage(img){
