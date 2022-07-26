@@ -1,22 +1,36 @@
 const bunnForm = document.getElementById('bunnForm');
 
-bunnForm.addEventListener('submit', function (event) {
+bunnForm.addEventListener('submit', async function (event) {
     event.preventDefault();
     const username = document.getElementById("username").value;
     if(!username){
         alert("No name error.");
+        return;
     }
     else{
-        var re = /(|\.jpeg|\.png)$/i;
-        if (!re.exec(username)) {
-            alert("File extension not supported!");
-        }
-        else{
         const output = document.getElementById("output");
-        output.textContent = "Thanks!";
+        const imageInput = document.getElementById("image");
+        //const payload = new FormData(bunnForm);
+        const payload = new FormData();
+        payload.append('file', imageInput.files[0]);
+ 
+        const endpoint = "https://serverlessjim.azurewebsites.net/api/bunnimage-upload?code=gV8xsRgZAHIv5CJ0u04qaQUV9OpZTh-aUlfQ_eLgrzWoAzFusQ0FKQ==";
+        const options ={
+            "method":"POST",
+            "body": payload,
+            headers:{
+                "codename": username,
+            }
         }
+        try{
+            const resp = await fetch(endpoint,options);
+            const data = await resp.text();
+            console.log(data);
+            output.textContent = data;
+        }catch(e){
+            console.log(e);
+        }
+        
     }
-
-
-
+   
  });

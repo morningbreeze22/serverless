@@ -9,11 +9,11 @@ module.exports = async function (context, req) {
     const body = req.body;
     let the_header_value = req.headers['codename'];
     let responseMessage ="";
-
     try{
         const parsedBody = multipart.Parse(body, boundary);
 
         let filetype = parsedBody[0].type;
+        context.log(filetype);
         let ext;
         if (filetype == "image/png") {
             ext = "png";
@@ -28,7 +28,7 @@ module.exports = async function (context, req) {
         responseMessage = await uploadFile(parsedBody, the_header_value, ext);
     }catch(err){
         context.log("Undefined body image");
-        responseMessage = "Sorry! No image attached.";
+        responseMessage = err;
     }
   
     context.res = {
