@@ -17,8 +17,6 @@ button.addEventListener("click",async function(event){
 
     const data = await resp.json();
 
-    console.log(data);
-
     document.getElementById("image1").src = "data:image/png;base64,"+data.cat1;
     document.getElementById("image2").src = "data:image/png;base64,"+data.cat2;
     document.getElementById("image3").src = "data:image/png;base64,"+data.cat3;
