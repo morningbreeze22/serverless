@@ -34,3 +34,23 @@ bunnForm.addEventListener('submit', async function (event) {
     }
    
  });
+
+const downloadbutton = document.getElementById("button2");
+downloadbutton.addEventListener("click", async function(event){
+    const username = document.getElementById("downloadusername").value;
+    const endpoint ="https://serverlessjim.azurewebsites.net/api/bunnimage-download?code=NJcgu0dAqDDswJnSVfdr7Bv8kctSUljmHTwEZAZl6zUAAzFuQTRCyg==";
+
+    const options ={
+        "method":"GET",
+        headers:{
+            "username": username,
+        }
+    };
+    try{
+        const resp = await fetch(endpoint,options);
+        const data = await resp.json();
+        window.open(data.downloadUri, "_self");
+    }catch(e){
+        console.log(e);
+    }
+});
